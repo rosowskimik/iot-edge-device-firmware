@@ -1,0 +1,37 @@
+#include <zephyr/dt-bindings/gpio/gpio.h>
+
+/ {
+	zephyr,user {
+		env-sensors = <&bh1750 &sht4x>;
+	};
+
+	sensor_enable: gpio-switch-d10 {
+		compatible = "regulator-fixed";
+
+		regulator-name = "sensor_enable";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+
+		enable-gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
+};
+
+&i2c0 {
+	status = "okay";
+
+	bh1750: bh1750@23 {
+		compatible = "rohm,bh1750";
+		reg = <0x23>;
+		vin-supply = <&sensor_enable>;
+		status = "okay";
+	};
+
+	sht4x: sht4x@44 {
+		compatible = "sensirion,sht4x";
+		reg = <0x44>;
+		repeatability = <2>;
+		vin-supply = <&sensor_enable>;
+		status = "okay";
+	};
+};

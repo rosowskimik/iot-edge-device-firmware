@@ -1,0 +1,23 @@
+&flash0 {
+	status = "okay";
+};
+
+&wifi {
+	status = "okay";
+};
+
+&spi2 {
+	status = "disabled";
+};
+
+&twai {
+	status = "disabled";
+};
+
+&uart0 {
+	status = "disabled";
+};
+
+&esp32_bt_hci {
+	status = "disabled";
+};
