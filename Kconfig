@@ -6,3 +6,97 @@ module = APP
 module-str = App
 source "subsys/logging/Kconfig.template.log_config"
 
+config APP_SENSOR_INTERVAL
+	int "Environment sensor read interval"
+	default 1
+	help
+	  The interval between subsequent reads from the environment
+	  sensor (in minutes).
+
+menu "Network Setup Options"
+
+config APP_INITIAL_SSID
+	string "Initial Wi-Fi SSID"
+	default "test"
+	help
+	  The initial Wi-Fi SSID the app will attempt to connect to.
+
+config APP_INITIAL_PASS
+	string "Initial Wi-Fi password"
+	default "test1234"
+	help
+	  The initial Wi-Fi password the app will attempt to connect to.
+
+config APP_NETWORK_TIMEOUT
+	int "Network timeout"
+	default 30
+	help
+	  Maximum wait time for connecting to Wi-Fi network (in seconds).
+
+config APP_NETWORK_RETRY_DELAY
+	int "Retry delay"
+	default 1
+	help
+	  Initial delay between subsequent retries of network operations
+	  (in minutes).
+
+config APP_NETWORK_RETRY_DELAY_MAX
+	int "Max retry delay"
+	default 30
+	help
+	  Maximum delay between subsequent retries of network operations
+	  (in minutes).
+
+config APP_SERVER_HOSTNAME
+	string "Server hostname"
+	default "sensor_server"
+	help
+	  Hostname of the sensor server.
+
+config APP_SERVER_PORT
+	int "Server port"
+	default 8000
+	help
+	  Network port of the sensor server.
+
+config APP_MAX_JSON_PAYLOAD
+	int "Max json message size"
+	default 512
+	help
+	  Maximum size of the http json payload.
+
+endmenu # Network Setup Options
+
+menu "Sensor Thread Options"
+
+config APP_SENSOR_STACK_SIZE
+	int "Thread stack size"
+	default 1024
+	help
+	  Sensor thread stack size (in bytes).
+
+config APP_SENSOR_THREAD_PRIORITY
+	int "Thread priority"
+	default 8
+	help
+	  Sensor thread priority.
+
+endmenu # Sensor Thread Options
+
+menu "Network Thread Options"
+
+config APP_NET_STACK_SIZE
+	int "Thread stack size"
+	default 16384
+	help
+	  Network thread stack size (in bytes).
+
+config APP_NET_THREAD_PRIORITY
+	int "Thread priority"
+	default 9
+	help
+	  Network thread priority.
+
+endmenu # Network Thread Options
+
+endmenu # Application Options
