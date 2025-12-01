@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        overlay: [n4]
+        overlay: [n2, n4]
 
     steps:
       - name: Checkout repository
