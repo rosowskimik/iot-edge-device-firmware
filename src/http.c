@@ -32,7 +32,7 @@ LOG_MODULE_REGISTER(http, CONFIG_APP_LOG_LEVEL);
 #define APP_HTTP_AUTHORIZE_URL    "/devices/register"
 #define APP_HTTP_POST_READING_URL "/devices/send_data"
 #define APP_HTTP_PROTOCOL         "HTTP/1.1"
-#define APP_HTTP_DEV_ID_HEADER    "X-DEVICE-ID"
+#define APP_HTTP_DEV_ID_HEADER    "X-SENSOR-ID"
 
 #define ZEPHYR_USER_NODE DT_PATH(zephyr_user)
 #define SENSOR_COUNT     DT_PROP_LEN(ZEPHYR_USER_NODE, env_sensors)
