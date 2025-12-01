@@ -1,0 +1,52 @@
+name: Build Zephyr application
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  ZEPHYR_SDK_INSTALL_DIR: /opt/toolchains
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/zephyrproject-rtos/ci-base:v0.28.6
+    strategy:
+      fail-fast: false
+      matrix:
+        overlay: [n4]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup West workspace
+        run: |
+          west init -l .
+          west update
+          west blobs fetch hal_espressif
+
+      - name: Setup Zephyr SDK
+        run: |
+          west sdk install --install-dir ${ZEPHYR_SDK_INSTALL_DIR} --toolchains riscv64-zephyr-elf
+
+      - name: Build (node ${{ matrix.overlay }})
+        run: |
+          west build -b xiao_esp32c3/esp32c3 -- -DEXTRA_DTC_OVERLAY_FILE="${PWD}/boards/${{ matrix.overlay }}.overlay"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v5
+        with:
+          name: firmware-${{ matrix.overlay }}
+          path: |
+            build/zephyr/zephyr.bin
+            build/zephyr/zephyr.elf
+          if-no-files-found: error
