@@ -8,7 +8,7 @@ source "subsys/logging/Kconfig.template.log_config"
 
 config APP_SENSOR_INTERVAL
 	int "Environment sensor read interval"
-	default 1
+	default 15
 	help
 	  The interval between subsequent reads from the environment
 	  sensor (in minutes).
