@@ -1,3 +1,19 @@
+#include <zephyr/dt-bindings/gpio/gpio.h>
+
+/ {
+	w1_0: w1_gpio4 {
+		compatible = "zephyr,w1-gpio";
+		gpios = <&gpio0 4 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN | GPIO_PULL_UP)>;
+		status = "okay";
+	};
+
+	w1_1: w1_gpio5 {
+		compatible = "zephyr,w1-gpio";
+		gpios = <&gpio0 5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN | GPIO_PULL_UP)>;
+		status = "okay";
+	};
+};
+
 &flash0 {
 	status = "okay";
 };
@@ -6,8 +22,12 @@
 	status = "okay";
 };
 
+&i2c0 {
+	status = "okay";
+};
+
 &spi2 {
-	status = "disabled";
+	status = "okay";
 };
 
 &twai {
