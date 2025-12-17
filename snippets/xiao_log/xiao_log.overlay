@@ -1,3 +1,5 @@
+// https://github.com/potblitd/XIAO-log
+
 #include <zephyr/dt-bindings/gpio/gpio.h>
 
 / {

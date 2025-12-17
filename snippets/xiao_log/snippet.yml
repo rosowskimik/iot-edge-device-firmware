@@ -1,0 +1,3 @@
+name: xiao_log
+append:
+  EXTRA_DTC_OVERLAY_FILE: xiao_log.overlay

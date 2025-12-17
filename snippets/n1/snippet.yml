@@ -1,0 +1,3 @@
+name: n1
+append:
+  EXTRA_DTC_OVERLAY_FILE: n1.overlay

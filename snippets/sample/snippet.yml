@@ -1,0 +1,3 @@
+name: snippet_name
+append:
+  EXTRA_DTC_OVERLAY_FILE: sample.overlay

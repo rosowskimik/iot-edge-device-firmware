@@ -1,3 +1,13 @@
+// Listing board sensors
+/ {
+	zephyr,user {
+		// All sensors used by node listed
+		env-sensors = <&s1 &s2 &s3>;
+	};
+};
+
+// Sensor definitions
+
 // maxim,ds18b20 (w1)
 &w1_0 {
 	ds18b20: ds18b20 {
