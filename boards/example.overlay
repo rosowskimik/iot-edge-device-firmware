@@ -1,0 +1,113 @@
+// maxim,ds18b20 (w1)
+&w1_0 {
+	ds18b20: ds18b20 {
+		compatible = "maxim,ds18b20";
+		family-code = <0x28>;
+		resolution = <12>;
+		status = "okay";
+	};
+};
+
+// vishay,vcnl4040 (i2c)
+&i2c0 {
+	vcnl4040: vcnl4040@60 {
+		compatible = "vishay,vcnl4040";
+		reg = <0x60>;
+		status = "okay";
+	};
+};
+
+// rohm,bh1750 (i2c)
+&i2c0 {
+	bh1750: bh1750@23 {
+		compatible = "rohm,bh1750";
+		reg = <0x23>;
+		status = "okay";
+	};
+};
+
+// sensirion,sht4x (i2c)
+&i2c0 {
+	sht4x: sht4x@44 {
+		compatible = "sensirion,sht4x";
+		reg = <0x44>;
+		repeatability = <2>;
+		status = "okay";
+	};
+}
+
+// aosong,dht11 (gpio)
+/ {
+	dht11: dht11 {
+		compatible = "aosong,dht";
+		// GPIO number is the second value
+		dio-gpios = <&gpio0 3 GPIO_PULL_UP>;
+		status = "okay";
+	};
+};
+
+// aosong,dht22 (gpio)
+/ {
+	dht22: dht22 {
+		compatible = "aosong,dht";
+		dht22;
+		// GPIO number is the second value
+		dio-gpios = <&gpio0 3 GPIO_PULL_UP>;
+		status = "okay";
+	};
+};
+
+// bosch,bmp180 (i2c)
+&i2c0 {
+	bmp180: bmp180@0x77 {
+		compatible = "bosch,bmp180";
+		osr-press = <1>;
+		reg = <0x77>;
+		status = "okay";
+	};
+};
+
+// bosch,bme280 (i2c)
+&i2c0 {
+	bme280: bme280@0x77 {
+		compatible = "bosch,bme280";
+		reg = <0x77>;
+		status = "okay";
+	};
+};
+
+// bosch,bmp280 (i2c)
+&i2c0 {
+	bmp280: bmp280@0x77 {
+		compatible = "bosch,bmp280", "bosch,bme280";
+		reg = <0x77>;
+		status = "okay";
+	};
+};
+
+// bosch,bme680 (i2c)
+&i2c0 {
+	bmp680: bme680@0x77 {
+		compatible = "bosch,bme680";
+		reg = <0x77>;
+		status = "okay";
+	};
+};
+
+// aosong,dht20 (i2c)
+&i2c0 {
+	dht20: dht20@0x38 {
+		compatible = "aosong,dht20";
+		reg = <0x38>;
+		status = "okay";
+	};
+};
+
+// avago,apds9960 (i2c)
+&i2c0 {
+	apds9960: apds9960@39 {
+		compatible = "avago,apds9960";
+		reg = <0x39>;
+		status = "okay";
+	};
+};
