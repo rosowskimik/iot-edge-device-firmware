@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        overlay: [n1, n2]
+        snippet: [n1, xiao_log]
 
     steps:
       - name: Checkout repository
@@ -38,14 +38,14 @@ jobs:
         run: |
           west sdk install --install-dir ${ZEPHYR_SDK_INSTALL_DIR} --toolchains riscv64-zephyr-elf
 
-      - name: Build (node ${{ matrix.overlay }})
+      - name: Build (node ${{ matrix.snippet }})
         run: |
-          west build -b xiao_esp32c3/esp32c3 -- -DEXTRA_DTC_OVERLAY_FILE="${PWD}/boards/${{ matrix.overlay }}.overlay"
+          west build -b xiao_esp32c3/esp32c3 -S ${{ matrix.snippet }}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v5
         with:
-          name: firmware-${{ matrix.overlay }}
+          name: firmware-${{ matrix.snippet }}
           path: |
             build/zephyr/zephyr.bin
             build/zephyr/zephyr.elf
