@@ -71,15 +71,36 @@ static const char *chan_type_str(int16_t chan)
 	case SENSOR_CHAN_HUMIDITY:
 		return "humid";
 	case SENSOR_CHAN_LIGHT:
+	case SENSOR_CHAN_AMBIENT_LIGHT:
 		return "light";
+	case SENSOR_CHAN_IR:
+		return "ir";
 	case SENSOR_CHAN_RED:
 		return "red";
 	case SENSOR_CHAN_GREEN:
 		return "green";
 	case SENSOR_CHAN_BLUE:
 		return "blue";
+	case SENSOR_CHAN_ALTITUDE:
+		return "alt";
+	case SENSOR_CHAN_PM_1_0:
+		return "pm1.0";
+	case SENSOR_CHAN_PM_2_5:
+		return "pm2.5";
+	case SENSOR_CHAN_PM_10:
+		return "pm10";
+	case SENSOR_CHAN_DISTANCE:
+		return "dist";
+	case SENSOR_CHAN_CO2:
+		return "co2";
+	case SENSOR_CHAN_O2:
+		return "o2";
 	case SENSOR_CHAN_GAS_RES:
 		return "gas_res";
+	case SENSOR_CHAN_VOC:
+		return "voc";
+	case SENSOR_CHAN_VOLTAGE:
+		return "volt";
 	default:
 		return "unknown";
 	}
