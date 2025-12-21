@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        snippet: [n1, xiao_log]
+        snippet: [n1, n2, xiao_log]
 
     steps:
       - name: Checkout repository
