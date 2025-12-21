@@ -32,9 +32,7 @@
 			      {SENSOR_CHAN_RED, 0}, {SENSOR_CHAN_GREEN, 0},                        \
 			      {SENSOR_CHAN_GAS_BLUE, 0}, {SENSOR_CHAN_PROX, 0})                    \
 	SENSOR_CHAN_BY_COMPAT(phandle, vishay_vcnl4040, {SENSOR_CHAN_PROX, 0},                     \
-			      {SENSOR_CHAN_LIGHT, 0})                                              \
-	SENSOR_CHAN_BY_COMPAT(phandle, aosong_dht, {SENSOR_CHAN_AMBIENT_TEMP, 0},                  \
-			      {SENSOR_CHAN_HUMIDITY, 0})
+			      {SENSOR_CHAN_LIGHT, 0})
 
 #define SENSOR_CHAN_COUNT(node_id, prop, idx)                                                      \
 	ARRAY_SIZE(((struct sensor_chan_spec[]){                                                   \
