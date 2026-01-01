@@ -31,7 +31,7 @@ jobs:
       - name: Setup West workspace
         run: |
           west init -l .
-          west update
+          west update -n
           west blobs fetch hal_espressif
 
       - name: Setup Zephyr SDK
