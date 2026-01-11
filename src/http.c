@@ -15,6 +15,7 @@
 #include <zephyr/net/http/client.h>
 #include <zephyr/net/http/method.h>
 #include <zephyr/net/http/status.h>
+#include <zephyr/sys/clock.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/devicetree.h>
 #include <zephyr/drivers/hwinfo.h>
@@ -28,6 +29,8 @@
 LOG_MODULE_REGISTER(http, CONFIG_APP_LOG_LEVEL);
 
 #define NET_ID_INIT_PRIORITY 99
+
+#define NET_TIMEOUT_SEC (CONFIG_APP_NETWORK_TIMEOUT * MSEC_PER_SEC)
 
 #define APP_HTTP_AUTHORIZE_URL    "/devices/register"
 #define APP_HTTP_POST_READING_URL "/devices/send_data"
@@ -184,7 +187,7 @@ static int authorize_device()
 			goto _err_delay;
 		}
 
-		rc = http_client_req(sock, &req, CONFIG_APP_NETWORK_TIMEOUT, &success);
+		rc = http_client_req(sock, &req, NET_TIMEOUT_SEC, &success);
 		if (rc < 0) {
 			LOG_ERR("authorize request failed (err %d)", rc);
 			goto _err_delay;
@@ -199,6 +202,7 @@ static int authorize_device()
 
 _err_delay:
 		LOG_WRN("next attempt in %d minute(s)", delay);
+		server_disconnect(sock);
 		k_sleep(K_MINUTES(delay));
 
 		delay = MIN(2 * delay, CONFIG_APP_NETWORK_RETRY_DELAY_MAX);
@@ -256,7 +260,7 @@ static int sensor_server_push()
 		return sock;
 	}
 
-	rc = http_client_req(sock, &req, CONFIG_APP_NETWORK_TIMEOUT, &success);
+	rc = http_client_req(sock, &req, NET_TIMEOUT_SEC, &success);
 	if (rc < 0) {
 		LOG_ERR("publish request failed (err %d)", rc);
 		goto _err_disc;
