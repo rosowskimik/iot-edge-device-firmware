@@ -47,11 +47,11 @@ config APP_NETWORK_RETRY_DELAY_MAX
 	  Maximum delay between subsequent retries of network operations
 	  (in minutes).
 
-config APP_SERVER_HOSTNAME
-	string "Server hostname"
-	default "sensor_server"
+config APP_SERVER_IP
+	string "Server address"
+	default "192.168.1.64"
 	help
-	  Hostname of the sensor server.
+	  IPv4 address of the sensor server.
 
 config APP_SERVER_PORT
 	int "Server port"
