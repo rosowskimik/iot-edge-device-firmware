@@ -1,6 +1,6 @@
 / {
 	zephyr,user {
-		env-sensors = <&dht22 &bh1750 &bmp180>;
+		env-sensors = <&bmp180 &dht22 &bh1750>;
 	};
 
 	dht22: dht22 {

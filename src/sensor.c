@@ -164,6 +164,7 @@ static void sensor_loop()
 			if (cqe->result) {
 				LOG_WRN("%s: async read failed (err %d)", cfg->sensor->name,
 					cqe->result);
+				rtio_cqe_release(&sensor_ctx, cqe);
 				continue;
 			}
 
